@@ -1,0 +1,245 @@
+Respostas
+
+
+1. (B) Extraia o arquivo "challenges.tar.gz"; você precisará de seu conteúdo para
+    resolver alguns dos desafios.
+    
+    tar -xvzf challenges.tar.gz
+
+
+2. (B) Mude seu diretório de trabalho para o diretório "desafios" que foi
+    criado quando você extraiu "challenges.tar.gz"
+    
+    cd challenges    
+
+3. (B) Liste o conteúdo do diretório "desafios".
+
+	ls
+
+4. (B) Crie um novo diretório chamado "foo".
+
+	mkdir foo	
+
+5. (I) Crie um novo diretório chamado "foo/bar/1/2/3"
+
+
+		mkdir foo/bar/1/2/3
+
+6. (B) Remova o diretório “foo” e todo o seu conteúdo
+
+	rm -r foo
+
+7. (B) Imprima o texto "Olá Mundo".
+
+		echo "olá mundo"
+
+8. (B) Crie um arquivo chamado "hello.txt" que contenha o texto "Hello World".
+
+	touch hello.txt
+	echo "Hello World> hello.txt"		
+
+9. (B) Crie um arquivo vazio chamado “empty.txt”
+		
+		touch empty.txt
+
+10. (B) Remova o arquivo “empty.txt”
+
+		rmdir empty.txt
+
+11. (I) Encontre uma segunda maneira de resolver o desafio 9.
+
+	>empty.txt
+
+12. (I) Encontre uma terceira maneira de resolver o desafio 9.
+	
+	cat /dev/null >empty.txt
+
+13. (B) Copie "hello.txt" e nomeie a cópia como "goodbye.txt".
+
+	cp "hello.txt" "goodbye.txt"
+
+14. (B) Renomeie "goodby.txt" para "hello_copy.txt".
+
+	mv "goodbye.txt" "hello_copy.txt"
+
+15. (I) Prove que o conteúdo de "hello.txt" e "hello_copy.txt" são
+     idêntico.
+     
+     diff hello.txt hello_copy.txt
+
+16. (B) Concatene o conteúdo de "hello.txt" e "hello_copy.txt" e armazene
+     o resultado em um arquivo chamado "2_hellos.txt".
+     
+     cat hello.txt hello_copy.txt > 2_hellos.txt
+
+17. (B) Obtenha o caminho completo do seu diretório de trabalho atual ("desafios").
+
+	/home/rafaela/command-line-challenges/challenges
+
+18. (B) Liste o conteúdo do diretório "desafios" (como o desafio 3), mas
+     mostre as permissões para cada arquivo.
+     
+     ls -1
+
+19. (B) Anexe algum texto ao final de "restricted.txt". Não há problema em fazer isso em
+     2 etapas.
+     
+     echo "Texto a ser anexado" > temp.txt
+     cat temp.txt >> restricted.txt
+
+20. (B) Execute o programa "hello_executable".
+
+	./hello_executable
+
+21. (B) Execute o programa "challenge_20". Não há problema em fazer isso em 2 etapas.
+
+	chmod +x challenge_20
+
+22. (B) Compile e execute "compile_me.c". Não há problema em fazer isso em 2 etapas.
+
+	gcc -o compile_me compile_me.c
+	 ./compile_me
+
+23. (A) Execute o programa "redirecionar" e colete toda a sua saída em um arquivo
+     denominado "saída.txt".
+     
+     $ ./redirect>>output.txt
+
+24. (B) Obtenha a data e hora atuais.
+
+		date
+
+25. (B) Mostre todos os processos em execução no seu computador.
+
+		ps aux		
+
+26. (B) Mostre o número de processadores/núcleos em seu computador.
+
+		nproc
+
+27. (B) Descubra qual versão do kernel Linux está sendo executada atualmente.
+
+		uname -r
+
+28. (B) Encontre o arquivo no diretório "bunch_of_files/" que contém a string:
+     "Você encontrou a agulha no palheiro!"
+     
+     find bunch_of_files/ -type f -exec grep -l "You found the needle in the haystack!" {} +
+
+29. (B) Imprima as primeiras 25 linhas de people.csv.
+
+		head -n 25 people.csv
+
+30. (B) Imprima as últimas 25 linhas de people.csv.
+
+		tail -n 25 people.csv
+
+31. (I) Exibir apenas as diferenças entre saudação1.txt e saudação2.txt
+
+		diff saudação1.txt saudação2.txt
+
+32. (I) Imprima "Hello", aguarde 5 segundos e imprima "world!".
+
+		echo "Hello"
+		sleep 5
+		echo "world!"
+
+
+33. (I) Crie um arquivo de 1 MB cheio de zeros.
+
+		dd if=/dev/zero of=arquivo_zeros bs=1M count=1
+
+34. (I) Crie um arquivo de 2 MB cheio de dados aleatórios.
+
+		dd if=/dev/urandom of=arquivo_aleatorio bs=1M count=2
+
+35. (I) Conte o número de linhas em README.txt.
+
+		wc -l README.txt
+
+36. (B) Exiba o conteúdo de README.txt ao contrário (última linha primeiro).
+
+		tac README.txt
+
+37. (I) Exiba todos os sobrenomes em people.csv.
+
+	cut -d ',' -f 2 people.csv | tail -n +2
+
+38. (A) Conte o número de sobrenomes exclusivos em people.csv.
+
+		cut -d ',' -f 2 people.csv | tail -n +2 | sort | uniq | wc -l
+
+
+39. (A) Você contou acidentalmente o cabeçalho CSV no desafio anterior?
+
+		tail -n +2 people.csv | cut -d ',' -f 2 | sort | uniq | wc -l
+
+40. (A) Existe uma segunda maneira de excluir o cabeçalho CSV da sua contagem. Encontre-o.
+
+		cut -d ',' -f 2 people.csv | grep -v "sobrenome" | sort | uniq | wc -l
+
+41. (A) Agora que você encontrou duas maneiras de contar corretamente o número de
+     sobrenomes em people.csv, você pode provar se um deles é mais eficiente ou não
+     (mais rápido) que o outro?
+     
+     time cut -d ',' -f 2 people.csv | tail -n +2 | sort | uniq | wc -l
+
+
+42. (A) Conte o número de pessoas com o primeiro nome “Josias” em people.csv.
+
+		grep -c "^Josias," people.csv
+
+43. (I) Conte o número de arquivos (não diretórios) no diretório "desafios".
+
+		find desafios -type f | wc -l
+
+44. (I) Conte o número de subdiretórios no diretório “desafios”.
+
+	find desafios -mindepth 1 -type d | wc -l
+
+45. (I) Remova todos os arquivos com “deleteme” no nome.
+
+			rm $(ls | grep deleteme)
+
+46. (I) No desafio 28 você encontrou um arquivo. Substitua a string "Você encontrou o
+     agulha no palheiro!" com "A agulha foi removida."
+     
+     find bunch_of_files/ -type f -exec sed -i 's/You found the needle in the haystack!/The needle has been removed./g' {} +
+
+
+47. (A) Transforme people.csv de ',' delimitado para '|' delimitado e salve o resultado em people_pipe.csv.
+
+		awk 'BEGIN {FS=","; OFS="|"} {print}' people.csv > people_pipe.csv
+
+48. (A) Encontre todos os arquivos em "bunch_of_files/" que são duplicados de "file001.rand".
+
+	find bunch_of_files/ -type f -exec diff {} file001.rand \; | grep -B 1 "Files" | grep -oE '^Files (.*) and' | awk '{print $2}'
+
+49. (A) Execute este desafio em exatamente 2 etapas
+
+     1) (B) Crie um arquivo vazio chamado "supercalifragilisticexpialidocious.txt".
+     2) (A) Remova "supercalifragilisticexpialidocious.txt". Seu comando pode
+            use apenas um máximo de 5 caracteres no total (sem curingas ou globs).
+            
+            touch supercalifragilisticexpialidocious.txt
+		rm s*
+
+
+50. (A) Crie um conjunto de arquivos vazios. Cada arquivo tem um nome no formato "L-N.txt"
+     onde L é uma letra e N é um número. As letras válidas são a,b,c, embora válidas
+     os números são 1,2,3. Crie todas as permutações (total de 9 arquivos). Faça seu
+     comando o mais curto possível. Eu posso fazer isso em 25 caracteres, você pode fazer
+     melhorar?
+     
+     touch {a..c}-{1..3}.txt
+
+
+BÔNUS: Crie seu próprio desafio e peça a um amigo para concluí-lo.
+
+
+Desafio: Crie um conjunto de arquivos numerados de 1 a 10, onde cada arquivo contém uma linha com o número correspondente ao seu nome. Em seguida, crie um arquivo "soma.txt" que contenha a soma de todos os números encontrados nos arquivos.
+
+
+Parabéns! Você completou todos os desafios. Se você ainda não
+já, volte e encontre maneiras diferentes de enfrentar alguns dos desafios.
+Compare notas com um amigo!
